@@ -1,3 +1,4 @@
+--- 
 swagger: "2.0"
 info:
   title: Agave Tagging API
@@ -177,6 +178,43 @@ paths:
             $ref: "#/definitions/TagResponse"
         "403":
           description: You do not have sufficient permissions to view this tag.
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: Not found
+          schema:
+            $ref: "#/definitions/Error"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - agaveImplicit:
+          - PRODUCTION
+        - agaveApplication:
+          - PRODUCTION
+        - agavePassword:
+          - PRODUCTION
+  "/tags/{tagId}/history":
+    get:
+      summary: Tag history
+      description: Returns a list of items with the given tag.
+      tags:
+        - Tag
+        - History
+      parameters:
+        - in: path
+          name: tagId
+          description: Unique id of the tag
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Tag events
+          schema:
+            $ref: "#/definitions/TagHistoryResponse"
+        "403":
+          description: You do not have sufficient permissions to either the tag or resource.
           schema:
             $ref: "#/definitions/Error"
         "404":
@@ -821,6 +859,39 @@ definitions:
       uuid:
         description: uuid of the referenced resource
         type: string
+  TagHistory:
+    description: Individual tag event
+    properties:
+      created:
+        description: uuid of the referenced resource
+        type: string
+        format: date-time
+      event:
+        description: event that occurred on this tag
+        type: string
+      description: 
+        description: description of the event which occurred
+        type: string
+      id:
+        description: unique identifier of the event
+        type: string
+  TagHistoryResponse:
+    description: Generic wrapper with TagHistory as result
+    properties:
+      status:
+        description: success or error
+        type: string
+      message:
+        description: error message description
+        type: string
+      version:
+        description: api version
+        type: string
+      result:
+        description: actual TagHistory objects
+        type: array
+        items:
+          $ref: "#/definitions/TagHisotry"
   TagPermissionResponse:
     description: Generic wrapper with TagPermission as result
     properties:
