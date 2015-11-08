@@ -1,5 +1,4 @@
---- 
-swagger: "2.0"
+swagger: '2.0'
 info:
   title: Agave Tagging API
   description: This is a mockup of a simple tagging api you can use to create loose associations between platform resources.
@@ -18,27 +17,27 @@ paths:
       tags:
         - Tag
       responses:
-        "200":
+        '200':
           description: An array of tags
           schema:
             type: array
             items:
-              $ref: "#/definitions/MultipleTagResponse"
-        "400":
-          description: Bad request, usually due to invalid resource type in the response query.
+              $ref: '#/definitions/MultipleTagResponse'
+        '400':
+          description: 'Bad request, usually due to invalid resource type in the response query.'
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     post:
       summary: Creat a new tag
       description: Creates a new tag
@@ -53,34 +52,34 @@ paths:
           description: JSON Tag object
           required: true
           schema:
-            $ref: "#/definitions/Tag"
+            $ref: '#/definitions/Tag'
       responses:
-        "200":
+        '200':
           description: An array of tags
           schema:
             type: array
             items:
-              $ref: "#/definitions/TagResponse"
-        "403":
+              $ref: '#/definitions/TagResponse'
+        '400':
+          description: 'Bad request, usually due to invalid resource type in the response query.'
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
           description: You do not have sufficient permissions to the tagged resources to apply the tag.
           schema:
-            $ref: "#/definitions/Error"
-        "400":
-          description: Bad request, usually due to invalid resource type in the response query.
-          schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}":
+            - PRODUCTION
+  '/tags/{tagId}':
     get:
       summary: Tag Details
       description: Returns detailed information about the named tag
@@ -93,29 +92,29 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to view this tag.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     put:
       summary: Update tag
       description: Updates the given tag with the updated information
@@ -135,31 +134,31 @@ paths:
           description: JSON Tag object
           required: true
           schema:
-            $ref: "#/definitions/Tag"
+            $ref: '#/definitions/Tag'
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to view this tag.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     delete:
       summary: Delete tag
       description: Deletes the tag and all permissions
@@ -172,30 +171,30 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to view this tag.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}/history":
+            - PRODUCTION
+  '/tags/{tagId}/history':
     get:
       summary: Tag history
       description: Returns a list of items with the given tag.
@@ -209,30 +208,30 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Tag events
           schema:
-            $ref: "#/definitions/TagHistoryResponse"
-        "403":
+            $ref: '#/definitions/TagHistoryResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}/resources":
+            - PRODUCTION
+  '/tags/{tagId}/resources':
     get:
       summary: Tagged items
       description: Returns a list of items with the given tag.
@@ -246,29 +245,29 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/MultipleTagResourceResponse"
-        "403":
+            $ref: '#/definitions/MultipleTagResourceResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     post:
       summary: Add resources to tag
       description: Adds the list of resources to the given tag
@@ -288,31 +287,31 @@ paths:
           description: List of resource uuid to add
           required: true
           schema:
-            $ref: "#/definitions/TagResource"
+            $ref: '#/definitions/TagResource'
       responses:
-        "200":
+        '200':
           description: Tag resources
           schema:
-            $ref: "#/definitions/MultipleTagResourceResponse"
-        "403":
+            $ref: '#/definitions/MultipleTagResourceResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     delete:
       summary: Clear all tagged resources
       description: Removes all resources from the given tag
@@ -326,30 +325,30 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Empty response
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}/resources/{uuid}":
+            - PRODUCTION
+  '/tags/{tagId}/resources/{uuid}':
     get:
       summary: Tagged items
       description: Returns a list of items with the given tag.
@@ -368,29 +367,29 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagResourceResponse"
-        "403":
+            $ref: '#/definitions/TagResourceResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     put:
       summary: Add resource to tag
       description: Adds the resource with the given uuid to the given tag
@@ -415,31 +414,31 @@ paths:
           description: empty body
           required: false
           schema:
-            $ref: "#/definitions/TagResource"
+            $ref: '#/definitions/TagResource'
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     delete:
       summary: Remove resource from tag
       description: Removes the given uuid from this tag
@@ -458,33 +457,33 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Empty response
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}/pems":
+            - PRODUCTION
+  '/tags/{tagId}/pems':
     get:
       summary: List permissionss set for a given tag id
-      description: "Returns a list of permission objects set on this Tag"
+      description: Returns a list of permission objects set on this Tag
       tags:
         - Tag
         - Permission
@@ -495,29 +494,29 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Current Status of the system
           schema:
-            $ref: "#/definitions/MultipleTagPermissionResponse"
-        "403":
+            $ref: '#/definitions/MultipleTagPermissionResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     post:
       summary: Grant permission
       description: Adds a permission for a given user to a given tag
@@ -538,31 +537,31 @@ paths:
           description: Unique id of a resource
           required: true
           schema:
-            $ref: "#/definitions/TagPermission"
+            $ref: '#/definitions/TagPermission'
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagPermissionResponse"
-        "403":
+            $ref: '#/definitions/TagPermissionResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     delete:
       summary: Clear tag permissions
       description: Removes all permissions save ownership from the given tag
@@ -576,26 +575,26 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Empty response
           schema:
-            $ref: "#/definitions/TagResponse"
-        "404":
+            $ref: '#/definitions/TagResponse'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
-  "/tags/{tagId}/pems/{username}":
+            - PRODUCTION
+  '/tags/{tagId}/pems/{username}':
     get:
       summary: List tag permissions for a user
       description: Returns the permission set on the given tag for a specific user.
@@ -615,31 +614,31 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: The user permission on this tag
           schema:
             type: array
             items:
-              $ref: "#/definitions/TagPermissionResponse"
-        "403":
+              $ref: '#/definitions/TagPermissionResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     post:
       summary: Update user permission on tag
       description: Resets the user permission on the given tag
@@ -666,31 +665,31 @@ paths:
           description: Valid permission value
           required: true
           schema:
-            $ref: "#/definitions/TagPermission"
+            $ref: '#/definitions/TagPermission'
       responses:
-        "200":
+        '200':
           description: Tag details
           schema:
-            $ref: "#/definitions/TagPermissionResponse"
-        "403":
+            $ref: '#/definitions/TagPermissionResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
     delete:
       summary: Remove user tag permission
       description: Removes permissions for the given user on the given tag
@@ -710,45 +709,45 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        '200':
           description: Empty response
           schema:
-            $ref: "#/definitions/TagResponse"
-        "403":
+            $ref: '#/definitions/TagResponse'
+        '403':
           description: You do not have sufficient permissions to either the tag or resource.
           schema:
-            $ref: "#/definitions/Error"
-        "404":
+            $ref: '#/definitions/Error'
+        '404':
           description: Not found
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
       security:
         - agaveImplicit:
-          - PRODUCTION
+            - PRODUCTION
         - agaveApplication:
-          - PRODUCTION
+            - PRODUCTION
         - agavePassword:
-          - PRODUCTION
+            - PRODUCTION
 securityDefinitions:
   agaveImplicit:
     type: oauth2
-    authorizationUrl: http://agave.iplantc.org/authorization
+    authorizationUrl: 'http://agave.iplantc.org/authorization'
     flow: implicit
     scopes:
       PRODUCTION: catchall scope for all core apis
   agaveApplication:
     type: oauth2
-    tokenUrl: http://agave.iplantc.org/token
+    tokenUrl: 'http://agave.iplantc.org/token'
     flow: application
     scopes:
       PRODUCTION: catchall scope for all core apis
   agavePassword:
     type: oauth2
-    tokenUrl: http://agave.iplantc.org/token
+    tokenUrl: 'http://agave.iplantc.org/token'
     flow: password
     scopes:
       PRODUCTION: catchall scope for all core apis
@@ -767,7 +766,7 @@ definitions:
         type: string
       result:
         description: actual tag result object
-        $ref: "#/definitions/Tag"
+        $ref: '#/definitions/Tag'
   MultipleTagResponse:
     description: Generic wrapper with Tag as result
     properties:
@@ -784,7 +783,7 @@ definitions:
         description: actual tag result object
         type: array
         items:
-          $ref: "#/definitions/TagSummary"
+          $ref: '#/definitions/TagSummary'
   TagSummary:
     description: Tag object without resource list
     properties:
@@ -820,7 +819,7 @@ definitions:
         description: The list of resource uuid associated with this tag
         type: array
         items:
-          $ref: "#/definitions/TagResource"
+          $ref: '#/definitions/TagResource'
   TagResourceResponse:
     description: Generic wrapper with TagResource as result
     properties:
@@ -835,7 +834,7 @@ definitions:
         type: string
       result:
         description: actual TagResource result object
-        $ref: "#/definitions/TagResource"
+        $ref: '#/definitions/TagResource'
   MultipleTagResourceResponse:
     description: Generic wrapper with list of TagResource as result
     properties:
@@ -852,7 +851,7 @@ definitions:
         description: actual TagResource result object
         type: array
         items:
-          $ref: "#/definitions/TagResource"
+          $ref: '#/definitions/TagResource'
   TagResource:
     description: Individual tag resource
     properties:
@@ -869,7 +868,7 @@ definitions:
       event:
         description: event that occurred on this tag
         type: string
-      description: 
+      description:
         description: description of the event which occurred
         type: string
       id:
@@ -891,7 +890,7 @@ definitions:
         description: actual TagHistory objects
         type: array
         items:
-          $ref: "#/definitions/TagHisotry"
+          $ref: '#/definitions/TagHistory'
   TagPermissionResponse:
     description: Generic wrapper with TagPermission as result
     properties:
@@ -906,7 +905,7 @@ definitions:
         type: string
       result:
         description: actual TagPermission object
-        $ref: "#/definitions/TagPermission"
+        $ref: '#/definitions/TagPermission'
   MultipleTagPermissionResponse:
     description: Generic wrapper with list of TagPermission as result
     properties:
@@ -923,7 +922,7 @@ definitions:
         description: list of TagPermission objects
         type: array
         items:
-          $ref: "#/definitions/TagPermission"
+          $ref: '#/definitions/TagPermission'
   TagPermission:
     description: Individual tag permission
     properties:
